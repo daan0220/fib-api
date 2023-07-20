@@ -1,0 +1,66 @@
+swagger: "2.0"
+info:
+  title: Fibonacci API
+  version: 1.0.0
+paths:
+  /fib:
+    get:
+      summary: Get Fibonacci number
+      tags:
+        - Fibonacci
+      parameters:
+        - name: n
+          in: query
+          description: Number of Fibonacci sequence
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              result:
+                type: string
+        "400":
+          description: Bad request
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+  /calculate:
+    get:
+      summary: Get Fibonacci number
+      tags:
+        - Fibonacci
+      description: Returns the Fibonacci number based on the provided input.
+      parameters:
+        - name: n
+          in: query
+          description: Number of Fibonacci sequence. Must be a positive integer.
+          required: true
+          schema:
+            type: integer
+            minimum: 0
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                    description: Fibonacci number calculated for the given input.
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Invalid input value. Please provide a valid positive integer for the Fibonacci sequence calculation.
